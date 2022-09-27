@@ -3,3 +3,7 @@ postgresql/
 etc/addons/
 etc/sessions/
 etc/filestore/
+entrypoint.sh
+etc/requirements.txt
+run.sh
+README.md
