@@ -1,13 +1,13 @@
 # Quick install
 
-Installing Odoo 14 with one command.
+Installing Odoo 15 with one command.
 
 (Supports multiple Odoo instances on one server)
 
 Install [docker](https://docs.docker.com/get-docker/) and [docker-compose](https://docs.docker.com/compose/install/) yourself, then run:
 
 ``` bash
-curl -s https://raw.githubusercontent.com/minhng92/odoo-14-docker-compose/master/run.sh | sudo bash -s odoo-one 10014 20014
+curl -s https://raw.githubusercontent.com/williskneeland/odoo-docker-compose/master/run.sh | sudo bash -s odoo-one 10014 20014
 ```
 
 to set up first Odoo instance @ `localhost:10014` (default master password: `minhng.info`)
@@ -15,7 +15,7 @@ to set up first Odoo instance @ `localhost:10014` (default master password: `min
 and
 
 ``` bash
-curl -s https://raw.githubusercontent.com/minhng92/odoo-14-docker-compose/master/run.sh | sudo bash -s odoo-two 11014 21014
+curl -s https://raw.githubusercontent.com/williskneeland/odoo-docker-compose/master/run.sh | sudo bash -s odoo-two 11014 21014
 ```
 
 to set up another Odoo instance @ `localhost:11014` (default master password: `minhng.info`)
@@ -40,7 +40,7 @@ Start the container:
 docker-compose up
 ```
 
-* Then open `localhost:10014` to access Odoo 14.0. If you want to start the server with a different port, change **10014** to another value in **docker-compose.yml**:
+* Then open `localhost:10014` to access Odoo 15.0. If you want to start the server with a different port, change **10014** to another value in **docker-compose.yml**:
 
 ```
 ports:
@@ -73,6 +73,11 @@ $ sudo sysctl -p    # apply new config immediately
 # Custom addons
 
 The **addons/** folder contains custom addons. Just put your custom addons if you have any.
+
+# Backup and Restore existing Odoo database
+
+Odoo's database can be backed up and restored by navigating to http:localhost:10014/web/database/manager
+![odoo-database-manager](screenshots/odoo-database-manager.png)
 
 # Odoo configuration & log
 
@@ -117,18 +122,3 @@ server {
 }
 #...
 ```
-
-# docker-compose.yml
-
-* odoo:14.0
-* postgres:13
-
-# Odoo 14 screenshots
-
-![odoo-14-welcome-docker](screenshots/odoo-14-welcome-screenshot.png)
-
-![odoo-14-apps-docker](screenshots/odoo-14-apps-screenshot.png)
-
-![odoo-14-sales](screenshots/odoo-14-sales-screen.png)
-
-![odoo-14-form](screenshots/odoo-14-sales-form.png)
