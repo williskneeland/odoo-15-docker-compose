@@ -1,37 +1,22 @@
 # Quick install
 
-Installing Odoo 15 with one command.
-
 (Supports multiple Odoo instances on one server)
 
 Install [docker](https://docs.docker.com/get-docker/) and [docker-compose](https://docs.docker.com/compose/install/) yourself, then run:
 
-``` bash
-curl -s https://raw.githubusercontent.com/williskneeland/odoo-docker-compose/master/run.sh | sudo bash -s odoo-one 10014 20014
+``` 
+sudo bash run.sh <destination_dir> <odoo_port> <chat_port>
 ```
 
-to set up first Odoo instance @ `localhost:10014` (default master password: `minhng.info`)
+to set up first Odoo instance @ `localhost:<odoo_port>` (default master password: `password123`)
 
-and
-
-``` bash
-curl -s https://raw.githubusercontent.com/williskneeland/odoo-docker-compose/master/run.sh | sudo bash -s odoo-two 11014 21014
-```
-
-to set up another Odoo instance @ `localhost:11014` (default master password: `minhng.info`)
+to set up another Odoo instance, simply run the previous command again, providing different (unused) ports
+and a different installation directory.
 
 Some arguments:
-* First argument (**odoo-one**): Odoo deploy folder
-* Second argument (**10014**): Odoo port
-* Third argument (**20014**): live chat port
-
-If `curl` is not found, install it:
-
-``` bash
-$ sudo apt-get install curl
-# or
-$ sudo yum install curl
-```
+* First argument: Odoo deploy folder
+* Second argument: Odoo port
+* Third argument: live chat port
 
 # Usage
 
@@ -40,27 +25,17 @@ Start the container:
 docker-compose up
 ```
 
-* Then open `localhost:10014` to access Odoo 15.0. If you want to start the server with a different port, change **10014** to another value in **docker-compose.yml**:
+* Then open `localhost:9000` to access Odoo 15.0. If you want to start the server with a different port, change **9000** to another value in **docker-compose.yml**:
 
 ```
 ports:
- - "10014:8069"
+ - "9000:8069"
 ```
 
 Run Odoo container in detached mode (be able to close terminal without stopping Odoo):
 
 ```
 docker-compose up -d
-```
-
-**If you get the permission issue**, change the folder permission to make sure that the container is able to access the directory:
-
-``` sh
-$ git clone https://github.com/minhng92/odoo-14-docker-compose
-$ sudo chmod -R 777 addons
-$ sudo chmod -R 777 etc
-$ mkdir -p postgresql
-$ sudo chmod -R 777 postgresql
 ```
 
 Increase maximum number of files watching from 8192 (default) to **524288**. In order to avoid error when we run multiple Odoo instances. This is an *optional step*. These commands are for Ubuntu user:
@@ -76,14 +51,14 @@ The **addons/** folder contains custom addons. Just put your custom addons if yo
 
 # Backup and Restore existing Odoo database
 
-Odoo's database can be backed up and restored by navigating to http:localhost:10014/web/database/manager
+Odoo's database can be backed up and restored by navigating to http:localhost:9000/web/database/manager
 ![odoo-database-manager](screenshots/odoo-database-manager.png)
 
 # Odoo configuration & log
 
 * To change Odoo configuration, edit file: **etc/odoo.conf**.
 * Log file: **etc/odoo-server.log**
-* Default database password (**admin_passwd**) is `minhng.info`, please change it @ [etc/odoo.conf#L60](/etc/odoo.conf#L60)
+* Default database password (**admin_passwd**) is `password123`, please change it @ [etc/odoo.conf#L60](/etc/odoo.conf#L60)
 
 # Odoo container management
 
